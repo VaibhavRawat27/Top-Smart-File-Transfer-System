@@ -191,7 +191,7 @@ The web dashboard provides:
 
 ### Project Structure
 ```
-ps2/
+Top-Smart-File-Transfer-System/
 ├── coordinator/           # Server component
 │   ├── app.py            # Main server application
 │   ├── requirements.txt  # Python dependencies
