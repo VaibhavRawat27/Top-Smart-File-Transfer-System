@@ -1,0 +1,81 @@
+2025-10-25 03:20:30,526 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:32,548 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:34,558 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:36,581 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:38,600 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:40,632 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:42,665 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:44,680 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:46,699 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:48,730 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:50,762 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:52,791 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:54,812 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:56,849 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:20:58,878 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:00,916 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:02,934 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:04,949 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:06,965 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:08,973 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:10,984 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:13,001 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:15,014 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:17,050 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:19,070 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:21,079 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:23,097 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:25,118 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:27,149 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:21:29,172 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:29:51,450 - __main__ - INFO - Starting Smart File Transfer System Coordinator
+2025-10-25 03:29:51,451 - __main__ - INFO - Upload directory: D:\ps2\coordinator\uploads
+2025-10-25 03:29:51,451 - __main__ - INFO - Database: D:\ps2\coordinator\state.db
+2025-10-25 03:29:51,452 - __main__ - INFO - Dashboard: http://0.0.0.0:5000
+2025-10-25 03:30:38,173 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:30:54,600 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:30:54,864 - __main__ - INFO - Starting Smart File Transfer System Coordinator
+2025-10-25 03:30:54,864 - __main__ - INFO - Upload directory: D:\ps2\coordinator\uploads
+2025-10-25 03:30:54,864 - __main__ - INFO - Database: D:\ps2\coordinator\state.db
+2025-10-25 03:30:54,864 - __main__ - INFO - Dashboard: http://0.0.0.0:5000
+2025-10-25 03:30:54,871 - __main__ - ERROR - Failed to start server: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+2025-10-25 03:30:56,632 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:30:58,662 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:00,688 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:02,697 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:04,736 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:06,751 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:08,765 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:10,801 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:12,817 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:14,836 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:16,866 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:18,897 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:20,935 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:22,968 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:25,003 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:27,039 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:29,056 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:31,072 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:33,100 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:35,140 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:37,170 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:39,195 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:41,223 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:43,255 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:45,280 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:47,315 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:49,345 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:51,359 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:31:53,374 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:36:04,868 - __main__ - INFO - Starting Smart File Transfer System Coordinator
+2025-10-25 03:36:04,869 - __main__ - INFO - Upload directory: D:\ps2\coordinator\uploads
+2025-10-25 03:36:04,869 - __main__ - INFO - Database: D:\ps2\coordinator\state.db
+2025-10-25 03:36:04,870 - __main__ - INFO - Dashboard: http://0.0.0.0:5000
+2025-10-25 03:36:04,872 - __main__ - ERROR - Failed to start server: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+2025-10-25 03:36:19,297 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined
+2025-10-25 03:40:21,412 - __main__ - INFO - Starting Smart File Transfer System Coordinator
+2025-10-25 03:40:21,420 - __main__ - INFO - Upload directory: D:\ps2\coordinator\uploads
+2025-10-25 03:40:21,420 - __main__ - INFO - Database: D:\ps2\coordinator\state.db
+2025-10-25 03:40:21,422 - __main__ - INFO - Dashboard: http://0.0.0.0:5000
+2025-10-25 03:40:44,081 - __main__ - ERROR - Health check failed: name 'get_db_connection' is not defined

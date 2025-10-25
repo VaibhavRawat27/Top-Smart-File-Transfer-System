@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Smart File Transfer System - Dashboard</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+    .header {
+      background: rgba(255,255,255,0.95);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+    }
+    .header h1 {
+      margin: 0 0 1rem 0;
+      color: #2c3e50;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.8);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #3498db;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-top: 0.5rem;
+    }
+    .network-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .network-status.connected {
+      background: #d4edda;
+      color: #155724;
+    }
+    .network-status.disconnected {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .status-dot.connected { background: #28a745; }
+    .status-dot.disconnected { background: #dc3545; }
+    .card {
+      background: rgba(255,255,255,0.95);
+      border: none;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin: 0 0 1rem 0;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .priority-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .priority-high {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .priority-normal {
+      background: #e0f2fe;
+      color: #0277bd;
+    }
+    .progress-container {
+      margin: 1rem 0;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 6px;
+      border: none;
+      background: #e9ecef;
+    }
+    progress::-webkit-progress-bar {
+      background: #e9ecef;
+      border-radius: 6px;
+    }
+    progress::-webkit-progress-value {
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 6px;
+    }
+    .transfer-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(248,249,250,0.8);
+      border-radius: 8px;
+    }
+    .transfer-stat {
+      text-align: center;
+    }
+    .transfer-stat-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #495057;
+    }
+    .transfer-stat-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-top: 0.25rem;
+    }
+    .log {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      max-height: 150px;
+      overflow-y: auto;
+      border-left: 4px solid #007bff;
+    }
+    .log-entry {
+      margin-bottom: 0.5rem;
+      padding: 0.25rem 0;
+    }
+    .log-entry.success {
+      color: #28a745;
+    }
+    .log-entry.error {
+      color: #dc3545;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #6c757d;
+    }
+    .empty-state h3 {
+      color: #495057;
+      margin-bottom: 1rem;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .transferring {
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🚀 Smart File Transfer System</h1>
+    <div class="network-status" id="networkStatus">
+      <div class="status-dot"></div>
+      <span>Connecting...</span>
+    </div>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="activeTransfers">0</div>
+        <div class="stat-label">Active Transfers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="totalTransfers">0</div>
+        <div class="stat-label">Total Transfers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="totalData">0 MB</div>
+        <div class="stat-label">Data Transferred</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="avgSpeed">0 KB/s</div>
+        <div class="stat-label">Avg Speed</div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="manifests">
+    <div class="empty-state">
+      <h3>No active transfers</h3>
+      <p>Start a file transfer to see real-time progress here</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script>
+    const socket = io();
+    const transfers = {};
+    const container = document.getElementById('manifests');
+    let totalTransfers = 0;
+    let totalDataTransferred = 0;
+    let transferSpeeds = [];
+
+    // Network status handling
+    const networkStatus = document.getElementById('networkStatus');
+    
+    socket.on('connect', () => {
+      updateNetworkStatus(true);
+    });
+    
+    socket.on('disconnect', () => {
+      updateNetworkStatus(false);
+    });
+
+    function updateNetworkStatus(connected) {
+      const dot = networkStatus.querySelector('.status-dot');
+      const text = networkStatus.querySelector('span');
+      
+      if (connected) {
+        networkStatus.className = 'network-status connected';
+        dot.className = 'status-dot connected';
+        text.textContent = 'Connected';
+      } else {
+        networkStatus.className = 'network-status disconnected';
+        dot.className = 'status-dot disconnected';
+        text.textContent = 'Disconnected';
+      }
+    }
+
+    function formatBytes(bytes) {
+      if (bytes === 0) return '0 B';
+      const k = 1024;
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function formatSpeed(bytesPerSecond) {
+      return formatBytes(bytesPerSecond) + '/s';
+    }
+
+    function updateStats() {
+      const activeCount = Object.keys(transfers).filter(id => 
+        transfers[id] && !transfers[id].completed
+      ).length;
+      
+      document.getElementById('activeTransfers').textContent = activeCount;
+      document.getElementById('totalTransfers').textContent = totalTransfers;
+      document.getElementById('totalData').textContent = formatBytes(totalDataTransferred);
+      
+      const avgSpeed = transferSpeeds.length > 0 
+        ? transferSpeeds.reduce((a, b) => a + b, 0) / transferSpeeds.length 
+        : 0;
+      document.getElementById('avgSpeed').textContent = formatSpeed(avgSpeed);
+    }
+
+    function addLogEntry(fileId, message, type = 'info') {
+      const log = document.getElementById(`log_${fileId}`);
+      if (log) {
+        const entry = document.createElement('div');
+        entry.className = `log-entry ${type}`;
+        entry.innerHTML = `<span style="color: #6c757d;">[${new Date().toLocaleTimeString()}]</span> ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+    }
+
+    socket.on('manifest', m => {
+      // Remove empty state if it exists
+      const emptyState = container.querySelector('.empty-state');
+      if (emptyState) {
+        emptyState.remove();
+      }
+
+      totalTransfers++;
+      transfers[m.file_id] = {
+        ...m,
+        startTime: Date.now(),
+        completed: false,
+        lastChunkTime: Date.now()
+      };
+
+      const el = document.createElement('div');
+      el.className = 'card transferring';
+      el.id = 'm_' + m.file_id;
+      
+      const priorityClass = m.priority === 'high' ? 'priority-high' : 'priority-normal';
+      
+      el.innerHTML = `
+        <h3>
+          📁 ${m.filename}
+          <span class="priority-badge ${priorityClass}">${m.priority}</span>
+        </h3>
+        <div class="progress-container">
+          <div class="progress-info">
+            <span>Progress: <span id="count_${m.file_id}">0</span> / ${m.total_chunks} chunks</span>
+            <span id="percentage_${m.file_id}">0%</span>
+          </div>
+          <progress id="prog_${m.file_id}" value="0" max="${m.total_chunks}"></progress>
+        </div>
+        <div class="transfer-stats">
+          <div class="transfer-stat">
+            <div class="transfer-stat-value" id="size_${m.file_id}">${formatBytes(m.size)}</div>
+            <div class="transfer-stat-label">File Size</div>
+          </div>
+          <div class="transfer-stat">
+            <div class="transfer-stat-value" id="speed_${m.file_id}">0 KB/s</div>
+            <div class="transfer-stat-label">Speed</div>
+          </div>
+          <div class="transfer-stat">
+            <div class="transfer-stat-value" id="eta_${m.file_id}">--</div>
+            <div class="transfer-stat-label">ETA</div>
+          </div>
+          <div class="transfer-stat">
+            <div class="transfer-stat-value" id="chunks_${m.file_id}">${m.total_chunks}</div>
+            <div class="transfer-stat-label">Total Chunks</div>
+          </div>
+        </div>
+        <div class="log" id="log_${m.file_id}"></div>
+      `;
+      
+      container.prepend(el);
+      addLogEntry(m.file_id, `Transfer started: ${m.filename} (${formatBytes(m.size)})`, 'info');
+      updateStats();
+    });
+
+    socket.on('chunk', c => {
+      const transfer = transfers[c.file_id];
+      if (!transfer) return;
+
+      const now = Date.now();
+      const timeDiff = (now - transfer.lastChunkTime) / 1000;
+      const chunkSize = transfer.size / transfer.total_chunks;
+      const speed = timeDiff > 0 ? chunkSize / timeDiff : 0;
+      
+      transfer.lastChunkTime = now;
+      transferSpeeds.push(speed);
+      if (transferSpeeds.length > 10) transferSpeeds.shift(); // Keep last 10 measurements
+
+      const percentage = Math.round((c.received / c.total) * 100);
+      const remaining = c.total - c.received;
+      const eta = speed > 0 ? remaining * chunkSize / speed : 0;
+
+      // Update UI elements
+      const cnt = document.getElementById('count_' + c.file_id);
+      const prog = document.getElementById('prog_' + c.file_id);
+      const pct = document.getElementById('percentage_' + c.file_id);
+      const speedEl = document.getElementById('speed_' + c.file_id);
+      const etaEl = document.getElementById('eta_' + c.file_id);
+
+      if (cnt) cnt.textContent = c.received;
+      if (prog) prog.value = c.received;
+      if (pct) pct.textContent = percentage + '%';
+      if (speedEl) speedEl.textContent = formatSpeed(speed);
+      if (etaEl) {
+        if (eta > 0 && eta < 3600) {
+          etaEl.textContent = Math.round(eta) + 's';
+        } else if (eta >= 3600) {
+          etaEl.textContent = Math.round(eta / 60) + 'm';
+        } else {
+          etaEl.textContent = '--';
+        }
+      }
+
+      totalDataTransferred += chunkSize;
+      addLogEntry(c.file_id, `Chunk ${c.chunk_id} received (${c.received}/${c.total})`, 'success');
+      updateStats();
+    });
+
+    socket.on('assembled', a => {
+      const transfer = transfers[a.file_id];
+      if (transfer) {
+        transfer.completed = true;
+        const card = document.getElementById('m_' + a.file_id);
+        if (card) {
+          card.classList.remove('transferring');
+          card.style.borderLeft = '4px solid #28a745';
+        }
+      }
+      
+      addLogEntry(a.file_id, `✅ File assembled successfully: ${a.filename}`, 'success');
+      updateStats();
+    });
+
+    socket.on('error', e => {
+      addLogEntry(e.file_id || 'system', `❌ Error: ${e.message}`, 'error');
+    });
+
+    // Initialize
+    updateNetworkStatus(false);
+    updateStats();
+  </script>
+</body>
+</html>
